@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <time.h>
 
 long double pi = 3.14159265358979;
 
@@ -54,6 +55,8 @@ long double findAnswer(long double argument){
 }
 
 long double randLongDouble(void) {
+    time_t t;
+    srand((unsigned) time(&t));
     unsigned long r53 = ((unsigned long)(rand()) << 21) ^ (rand() >> 2);
-    return 4 * (double)r53 / 9007199254740991.0;
+    return (double)r53 / 9007199254740991.0;
 }

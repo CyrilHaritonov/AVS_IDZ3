@@ -3,7 +3,6 @@
 #include <string.h>
 #include <getopt.h>
 #include <sys/time.h>
-#include <time.h>
 
 extern long double findAnswer(long double argument);
 
@@ -15,10 +14,9 @@ int main(int argc, char *argv[]) {
             {"iofiles", required_argument, 0, 'f'},
             {"random",  required_argument, 0, 'r'}
     };
-    int optionIndex = 0, n, iterations = 1, flag = 0;
+    int optionIndex = 0, iterations = 1;
     int arg = getopt_long(argc, argv, "f:r:", longOptions, &optionIndex);
     long double argument, answer;
-    time_t t;
     FILE* file_output = stdout;
     switch (arg) {
         case 'f': {
@@ -39,7 +37,6 @@ int main(int argc, char *argv[]) {
             break;
         }
         case 'r': {
-            srand((unsigned) time(&t));
             iterations = (int) strtol(strtok(optarg, ":"), NULL, 10);
             argument = randLongDouble();
             fprintf(file_output,"Following floating point number was generated: %Lf \n", argument);
